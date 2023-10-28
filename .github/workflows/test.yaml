@@ -1,0 +1,36 @@
+name: Just a test for setup-kind action with feature gates (https://github.com/norbjd/actions/tree/add-feature-gates-to-setup-kind)
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  test-with-one-feature-gate:
+    name: Use 1 feature gate
+    steps:
+    - name: Setup KinD with 1 feature gate
+      uses: norbjd/actions/setup-kind@add-feature-gates-to-setup-kind
+      with:
+        k8s-version: 1.28.x
+        kind-worker-count: 1
+        feature-gates: InPlacePodVerticalScaling
+
+  test-with-multiple-feature-gates:
+    name: Use multiple feature gates (comma-separated)
+    steps:
+    - name: Setup KinD with 3 feature gates
+      uses: norbjd/actions/setup-kind@add-feature-gates-to-setup-kind
+      with:
+        k8s-version: 1.28.x
+        kind-worker-count: 1
+        feature-gates: InPlacePodVerticalScaling,HPAScaleToZero,ConsistentListFromCache
+
+  test-without-feature-gates:
+    name: Don't use feature gate (just to catch regressions)
+    steps:
+    - name: Setup KinD without feature gates
+      uses: norbjd/actions/setup-kind@add-feature-gates-to-setup-kind
+      with:
+        k8s-version: 1.28.x
+        kind-worker-count: 1
