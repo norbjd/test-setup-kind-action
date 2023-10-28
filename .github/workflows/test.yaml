@@ -8,6 +8,7 @@ on:
 jobs:
   test-with-one-feature-gate:
     name: Use 1 feature gate
+    runs-on: ubuntu-22.04
     steps:
     - name: Setup KinD with 1 feature gate
       uses: norbjd/actions/setup-kind@add-feature-gates-to-setup-kind
@@ -18,6 +19,7 @@ jobs:
 
   test-with-multiple-feature-gates:
     name: Use multiple feature gates (comma-separated)
+    runs-on: ubuntu-22.04
     steps:
     - name: Setup KinD with 3 feature gates
       uses: norbjd/actions/setup-kind@add-feature-gates-to-setup-kind
@@ -28,6 +30,7 @@ jobs:
 
   test-without-feature-gates:
     name: Don't use feature gate (just to catch regressions)
+    runs-on: ubuntu-22.04
     steps:
     - name: Setup KinD without feature gates
       uses: norbjd/actions/setup-kind@add-feature-gates-to-setup-kind
